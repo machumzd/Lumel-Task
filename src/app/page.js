@@ -38,12 +38,24 @@ export default function Home() {
 
   const total = calculateTotalPrice(data);
 
+  const handleReset = () => {
+    setData(deepClone(original).map(updateParentValues));
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-yellow-300 to-yellow-400 p-6">
       <div className="w-full max-w-5xl bg-white shadow-xl rounded-2xl p-6">
-        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Lumel Task Dashboard
-        </h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold  text-center text-gray-800">
+            Lumel Task Dashboard
+          </h1>
+          <button
+            onClick={handleReset}
+            className=" bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm"
+          >
+            Reset
+          </button>
+        </div>
         <CustomTable
           tableData={data}
           totalPrice={total}

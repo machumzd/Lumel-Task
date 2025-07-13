@@ -14,7 +14,7 @@ const CustomTable = ({ tableData, totalPrice, ogData, handleUpdate }) => {
               <th className={tableHeaderClass}>Label</th>
               <th className={tableHeaderClass}>Value</th>
               <th className={tableHeaderClass}>Input</th>
-              <th className={tableHeaderClass}>Difference %</th>
+              <th className={tableHeaderClass}>Variance %</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">

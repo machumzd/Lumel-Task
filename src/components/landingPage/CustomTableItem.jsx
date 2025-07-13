@@ -3,7 +3,7 @@ import { calculateDifference } from "../utils/commonMethods";
 
 const TableItem = ({ item, original, handleUpdate, level = 0 }) => {
   const variance = calculateDifference(original, item);
-  const indentPx = Math.min(level * 16, 48); // max 48px indent for nesting
+  const indentPx = Math.min(level * 16, 48);
 
   return (
     <>
@@ -42,7 +42,6 @@ const TableItem = ({ item, original, handleUpdate, level = 0 }) => {
         <td className="py-3 px-6 text-gray-600">{variance}</td>
       </tr>
 
-      {/* Render children recursively if available */}
       {item.children?.map((child) => (
         <TableItem
           key={child.id}

@@ -8,7 +8,6 @@ import {
   updateParentValues,
 } from "@/components/utils/commonMethods";
 import { TableData } from "@/data/TableData";
-import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -40,13 +39,18 @@ export default function Home() {
   const total = calculateTotalPrice(data);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-yellow-400">
-      <CustomTable
-        tableData={data}
-        totalPrice={total}
-        ogData={original}
-        handleUpdate={handleUpdate}
-      />
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-yellow-300 to-yellow-400 p-6">
+      <div className="w-full max-w-5xl bg-white shadow-xl rounded-2xl p-6">
+        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
+          Lumel Task Dashboard
+        </h1>
+        <CustomTable
+          tableData={data}
+          totalPrice={total}
+          ogData={original}
+          handleUpdate={handleUpdate}
+        />
+      </div>
     </div>
   );
 }

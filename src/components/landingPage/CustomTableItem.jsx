@@ -3,38 +3,46 @@ import { calculateDifference } from "../utils/commonMethods";
 
 const TableItem = ({ item, original, handleUpdate, level = 0 }) => {
   const variance = calculateDifference(original, item);
-  const indent = Math.min(level * 4, 12);
+  const indentPx = Math.min(level * 16, 48); // max 48px indent for nesting
 
   return (
     <>
-      <tr className="border-b">
-        <td className={`pl-${indent} py-3`}>{item.label}</td>
-        <td>{item.value}</td>
-        <td>
+      <tr className="hover:bg-gray-50 transition-colors border-b text-sm text-gray-800">
+        <td className="py-3 px-6">
+          <div style={{ paddingLeft: `${indentPx}px` }} className="font-medium">
+            {item.label}
+          </div>
+        </td>
+
+        <td className="py-3 px-6">{item.value ?? 0}</td>
+
+        <td className="py-3 px-6">
           <div className="flex items-center gap-2">
             <input
               type="number"
-              className="border px-2 py-1 w-20 text-sm rounded"
+              placeholder="Enter"
+              className="border border-gray-300 px-3 py-1 rounded w-24 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
               onChange={(e) => (item.temp = parseFloat(e.target.value))}
             />
             <button
               onClick={() => handleUpdate(item.id, item.temp, "percentage")}
-              className="bg-blue-500 text-white px-2 py-1 rounded text-xs"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs"
             >
               Allocation %
             </button>
             <button
               onClick={() => handleUpdate(item.id, item.temp, "value")}
-              className="bg-green-500 text-white px-2 py-1 rounded text-xs"
+              className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs"
             >
               Allocation Val
             </button>
           </div>
         </td>
-        <td className="text-sm text-gray-600">{variance}</td>
+
+        <td className="py-3 px-6 text-gray-600">{variance}</td>
       </tr>
 
-      {/* Render children if present */}
+      {/* Render children recursively if available */}
       {item.children?.map((child) => (
         <TableItem
           key={child.id}
